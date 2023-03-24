@@ -47,7 +47,11 @@ services:
 
 #PostgreSQL
   pgsql:
-    image: postgres:15.1
+    build:
+      context: dockerfiles/postgresql
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     restart: unless-stopped
     ports:
       - "5432:5432"
