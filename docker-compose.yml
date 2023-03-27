@@ -62,6 +62,17 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: postgres
 
+#pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    depends_on:
+      - pgsql
+    environment:
+      PGADMIN_DEFAULT_EMAIL: example@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123
+
 #MySQL
   mysql:
     image: mysql:5.7
