@@ -1,32 +1,57 @@
 # Laravel Project Boilerplate
-Сборка для быстрого развертывания локального окружения для разработки на Laravel.
-Предназначена для среды WSL (Windows Subsystem for Linux), тестировалась 
-на Ubuntu 22.04.2 LTS встроенной в Windows 10.
 
+### [Russian version of the readme](./README-ru.md)
 
-## Состав:
+## Description
+A build for quickly deploying a local environment for PHP development.
+The build  is designed for the WSL (Windows Subsystem for Linux) environment, and
+was tested on Ubuntu 22.04.2 LTS built into Windows 10.
+
+## Composition
 * Laravel 10 (latest)
 * PHP 8.2
 * Xdebug
 * Composer
 * Node.js
 * PostgreSQL 15.1
-* pgAdmin
 * MySQL 5.7
 
-## Создание нового проекта Laravel:
-* **Обязательно удалить файл .geetkeep** из директории **src**, 
-в момент создания нового проекта эта папка должна быть пустой.
-* Выполнить команду ```make up``` 
-* Выполнить команду ```make init``` 
-* Проверить, что проект доступен по адресу  http://localhost:8080/
+## Initializing a new Laravel project
+* **Make sure to delete the .geetkeep** file from the **src** directory,
+  at the time of creating a new project, this folder must be empty.
+* Run command ```make up```
+* Run command ```make init```
+* Check that the project is available at http://localhost:8080/
 
-## Возможные проблемы
+## Command list
 
-* Стандартная конфигурация Vite не предназначена для использования в докер-контейнере 
-и поэтому не будет корректно работать из коробки. Для корректной работы отредактируйте
-файл конфигурации **vite.config.js**  добавив между строками ```export default defineConfig({``` 
-и ```plugins: [``` следующий код:
+* ```make build``` - build containers
+* ```make up``` - start containers
+* ```make down``` - stop containers
+* ```make init``` - initialize a new Laravel project
+* ```make list``` - list of running containers
+* ```make enter name=SERVICE``` - go to a running container (open command line 
+terminal), replace ```SERVICE``` with the service name according to
+**docker-compose.yml**, for example ```php`` `, ```pgsql``` or ```nginx``` 
+and so on
+* ```make php``` - go to php container
+* ```make npm``` - go to npm container
+* ```make migrate``` - run migrations
+* ```make vite``` - run Vite's built-in dev server to track changes to css and js files
+* ```make vite-build``` - build css and js files for production
+
+## Setting up Xdebug in PHPStorm
+* Default server name: **docker**
+* Host: **localhost**
+* Port: **8080**
+* Use path mapping for **src** directory
+
+## Possible problems
+
+* The default Vite configuration is not intended to be used in a docker container 
+and therefore will not work correctly out of the box. To work correctly, edit 
+the configuration file **vite.config.js** by adding the following code between 
+the lines ```export default defineConfig({``` and ```plugins: [```:
 ```
   server: {
   host: '0.0.0.0',
@@ -40,33 +65,11 @@
   },
 ```
 
-* Для корректной работы volumes докер-контейнера PostgreSQL необходимо,
-что бы UID/GID пользователя внутри контейнера соответствовали значению
-локального пользователя Linux. По умолчанию данный контейнер запускается
-с UID/GID 1000/1000. В случае если UID/GID локального пользователя отличаются
-необходимо выполнить команды ```export LOCAL_UID=$(id -u)``` и ```export LOCAL_GID=$(id -g)```
-перед первым запуском контейнера PostgreSQL.
-
-## Полный список команд:
-Для удобства управления все основные команды внесены в Makefile
-
-* ```make build``` - сборка контейнеров
-* ```make up``` - запуск контейнеров
-* ```make down``` - остановка контейнеров
-* ```make init``` - инициализация нового проекта Laravel
-* ```make list``` - список запущенных контейнеров
-* ```make enter name=SERVICE``` - зайти в запущенный контейнер (запустить терминал), вместо ```SERVICE``` имя сервиса согласно 
-**docker-compose.yml**, например ```php```, ```npm``` или ```webserver```
-* ```make php``` - зайти в контейнер php (запустить терминал)
-* ```make npm``` - зайти в контейнер npm (запустить терминал)
-* ```make migrate``` - выполнить миграции
-* ```make vite``` - запустить встроенный dev сервер Vite для отслеживания изменений css и js файлов
-* ```make vite build``` - сборка css и js файлов для продакшена
-
-## Настройка Xdebug в PHPStorm:
-* Имя сервера по умолчанию: **docker**
-* Хост: **localhost**
-* Порт: **8080**
-* Использовать path mapping для директории **src** на директорию **/var/www/html**
+* In order for PostgreSQL docker container volumes to work correctly, the UID/GID
+  of the user inside the container must match the value of the local Linux user.  
+  By default, this container starts with UID/GID 1000/1000. If the UID/GID of the
+  local user is different you must run the ```export LOCAL_UID=$(id -u)```
+  and ```export LOCAL_GID=$(id -g)``` commands before starting the PostgreSQL
+  container for the first time.
 
 
