@@ -44,7 +44,7 @@ and so on
 * Default server name: **docker**
 * Host: **localhost**
 * Port: **8080**
-* Use path mapping for **src** directory
+* Use path mapping between **src** directory and **/var/www/html** path
 
 ## Possible problems
 
