@@ -17,8 +17,8 @@ was tested on Ubuntu 22.04.2 LTS built into Windows 10.
 * MySQL 5.7
 
 ## Initializing a new Laravel project
-* **Make sure to delete the .geetkeep** file from the **src** directory,
-  at the time of creating a new project, this folder must be empty.
+* **Make sure to delete the .geetkeep** file from the **src** directory.
+  At the time of creating a new project, this folder must be empty.
 * Run command ```make up```
 * Run command ```make init```
 * Check that the project is available at http://localhost:8080/
@@ -31,7 +31,7 @@ was tested on Ubuntu 22.04.2 LTS built into Windows 10.
 * ```make init``` - initialize a new Laravel project
 * ```make list``` - list of running containers
 * ```make enter name=SERVICE``` - go to a running container (open command line 
-terminal), replace ```SERVICE``` with the service name according to
+terminal). Replace ```SERVICE``` with the service name according to
 **docker-compose.yml**, for example ```php`` `, ```pgsql``` or ```nginx``` 
 and so on
 * ```make php``` - go to php container
