@@ -17,11 +17,23 @@ was tested on Ubuntu 22.04.2 LTS built into Windows 10.
 * MySQL 5.7
 
 ## Initializing a new Laravel project
-* **Make sure to delete the .geetkeep** file from the **src** directory.
+* Clone the repository to a new directory using the command:
+```
+git clone https://github.com/A-Nikolaefff/laravel-project-boilerplate.git YOUR_PROJECT_NAME
+```
+* **!!! Make sure to delete the .geetkeep** file from the **src** directory.
   At the time of creating a new project, this folder must be empty.
-* Run command ```make up```
-* Run command ```make init```
-* Check that the project is available at http://localhost:8080/
+* In the project directory run the command: 
+```
+make up
+```
+* Wait for docker containers to build and run and 
+in the project directory run the command:
+```
+make init
+```
+* Check that the project is available at http://localhost:8080/ .
+  The first launch of the application may take a long time.
 
 ## Command list
 
@@ -36,7 +48,6 @@ terminal). Replace ```SERVICE``` with the service name according to
 and so on
 * ```make php``` - go to php container
 * ```make npm``` - go to npm container
-* ```make migrate``` - run migrations
 * ```make vite``` - run Vite's built-in dev server to track changes to css and js files
 * ```make vite-build``` - build css and js files for production
 
