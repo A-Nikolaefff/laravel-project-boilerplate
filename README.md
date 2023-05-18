@@ -21,8 +21,8 @@ was tested on Ubuntu 22.04.2 LTS built into Windows 10.
 ```
 git clone https://github.com/A-Nikolaefff/laravel-project-boilerplate.git YOUR_PROJECT_NAME
 ```
-* **!!! Make sure to delete the .geetkeep** file from the **src** directory.
-  At the time of creating a new project, this folder must be empty.
+* Delete the **.geetkeep** file from the **src** directory.
+  At the time of creating a new project, this directory must be empty.
 * In the project directory run the command: 
 ```
 make up
