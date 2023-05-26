@@ -44,7 +44,7 @@ make init
 * ```make list``` - list of running containers
 * ```make enter name=SERVICE``` - go to a running container (open command line 
 terminal). Replace ```SERVICE``` with the service name according to
-**docker-compose.yml**, for example ```php`` `, ```pgsql``` or ```nginx``` 
+**docker-compose.yml**, for example ```php```, ```pgsql``` or ```nginx``` 
 and so on
 * ```make php``` - go to php container
 * ```make npm``` - go to npm container
