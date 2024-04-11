@@ -1,86 +1,66 @@
 # Laravel Project Boilerplate
 
-### [Russian version of the readme](./README-ru.md)
+## Обзор
+Этот шаблон для Laravel разработан с двумя основными целями:
 
-## Description
-A build for quickly deploying a local environment for PHP development.
-The build  is designed for the WSL (Windows Subsystem for Linux) environment, and
-was tested on Ubuntu 22.04.2 LTS built into Windows 10.
+1. **Создание базовой среды для разработки на Laravel:** Этот шаблон предоставляет базовую конфигурацию для локальной разработки
+приложений Laravel. Он не является универсальным решением, подобно Laravel Sail или Laradock, и предполагает,
+что разработчик может самостоятельно добавлять, удалять или настраивать сервисы по мере необходимости, 
+что требует базового понимания Docker.
+2. **Упрощение работы с командами:** Шаблон включает Makefile для быстрого доступа к наиболее часто используемым командам 
+разработки Laravel, позволяя выполнять их без предварительного входа в PHP контейнер. Эти алиасы могут быть легко
+адаптированы или расширены в соответствии с особенностями конкретного проекта.
 
-## Composition
-* Laravel 10 (latest)
-* PHP 8.2
-* Xdebug
-* Composer
-* Node.js
-* PostgreSQL 15.1
-* MySQL 5.7
+## Системные ребтования
+Шаблон предназначен для использования на системах Linux или WSL (Windows Subsystem for Linux). 
+Для работы необходим установленный пакет make. Команда для установки на Ubuntu:
+```
+sudo apt install make
+```
 
-## Initializing a new Laravel project
-* Clone the repository to a new directory using the command:
+## Состав базового шаблона
+- PHP: версия 8.3
+- Laravel: версия 11
+- MySQL: версия 8.3
+- PostgreSQL: версия 16.2
+
+## Инициализация нового проекта
+* Клонируйте репозиторий в новую директорию с помощью команды:
 ```
 git clone https://github.com/A-Nikolaefff/laravel-project-boilerplate.git YOUR_PROJECT_NAME
 ```
-* Delete the **.geetkeep** file from the **src** directory.
-  At the time of creating a new project, this directory must be empty.
-* In the project directory run the command: 
-```
-make up
-```
-* Wait for docker containers to build and run and 
-in the project directory run the command:
+* В директории проекта выполните команду для инициализации нового Laravel проекта:
 ```
 make init
 ```
-* Check that the project is available at http://localhost:8080/ .
-  The first launch of the application may take a long time.
-
-## Command list
-
-* ```make build``` - build containers
-* ```make up``` - start containers
-* ```make down``` - stop containers
-* ```make init``` - initialize a new Laravel project
-* ```make list``` - list of running containers
-* ```make enter name=SERVICE``` - go to a running container (open command line 
-terminal). Replace ```SERVICE``` with the service name according to
-**docker-compose.yml**, for example ```php```, ```pgsql``` or ```nginx``` 
-and so on
-* ```make php``` - go to php container
-* ```make npm``` - go to npm container
-* ```make vite``` - run Vite's built-in dev server to track changes to css and js files
-* ```make vite-build``` - build css and js files for production
-
-## Setting up Xdebug in PHPStorm
-* Default server name: **docker**
-* Host: **localhost**
-* Port: **8080**
-* Use path mapping between **src** directory and **/var/www/html** path
-
-## Possible problems
-
-* The default Vite configuration is not intended to be used in a docker container 
-and therefore will not work correctly out of the box. To work correctly, edit 
-the configuration file **vite.config.js** by adding the following code between 
-the lines ```export default defineConfig({``` and ```plugins: [```:
+* Установите в .env файле переменные для соединения с базой данной. Пример для MySQL:
 ```
-  server: {
-  host: '0.0.0.0',
-  hmr: {
-  host: 'localhost'
-  },
-  port: 3009,
-  watch: {
-  usePolling: true
-  }
-  },
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=laravel
 ```
+* Запустите команду для начала работы контейнеров:
+```
+make up
+```
+* Проверьте доступность стандартной страницы Laravel по адресу: http://localhost:8080/
 
-* In order for PostgreSQL docker container volumes to work correctly, the UID/GID
-  of the user inside the container must match the value of the local Linux user.  
-  By default, this container starts with UID/GID 1000/1000. If the UID/GID of the
-  local user is different you must run the ```export LOCAL_UID=$(id -u)```
-  and ```export LOCAL_GID=$(id -g)``` commands before starting the PostgreSQL
-  container for the first time.
+## Cписок основных Make комманд
+Полный список команд доступен с помощью команды ```make help``` или в самом Makefile в корне проекта. Примеры команд:
+
+* ```make init``` - инициализация нового проекта Laravel
+* ```make up``` - запуск контейнеров
+* ```make php``` - зайти в контейнер php (запустить терминал)
+* ```make debug``` - отладка консольной команды
+* ```make migrate``` - запуск миграций базы данных
 
 
+## Настройка Xdebug в PHPStorm
+
+* **Имя сервера:** localhost
+* **Хост**: localhost
+* **Порт**: 80
+* **Path Mapping:** настроить сопоставление корневой директории проекта с путем /var/www/.
