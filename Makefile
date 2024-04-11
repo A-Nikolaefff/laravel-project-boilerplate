@@ -52,6 +52,8 @@ clear: ## Clear application cache, configuration cache file and cached bootstrap
 debug: ## Debug artisan command, for example: make debug app:test-command
 	docker compose exec ${CONTAINER_PHP} php -dxdebug.mode=debug -dxdebug.start_with_request=yes -dxdebug.client_port=9000 -dxdebug.client_host=host.docker.internal artisan $(RUN_ARGS)
 
+tinker: ## Run artisan tinker
+	docker compose exec ${CONTAINER_PHP} php artisan tinker
 
 #-------------------------------------------------- Database commands -------------------------------------------------#
 
