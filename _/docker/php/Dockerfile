@@ -107,6 +107,8 @@ RUN chmod +x /usr/bin/start.sh
 CMD ["sh", "/usr/bin/start.sh"]
 #----------------------------------------------------------------------------------------------------------------------#
 
+RUN chown -R $user:$user /home/$user
+
 WORKDIR /var/www/
 USER $user
 
