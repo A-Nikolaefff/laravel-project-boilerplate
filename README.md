@@ -6,7 +6,7 @@
 1. **Создание базовой среды для разработки на Laravel:** Этот шаблон предоставляет базовую конфигурацию для локальной разработки
 приложений Laravel. Он не является универсальным решением, подобно Laravel Sail или Laradock, и предполагает,
 что разработчик может самостоятельно добавлять, удалять или настраивать сервисы по мере необходимости, 
-что требует базового понимания Docker.
+то есть требует базового понимания Docker.
 2. **Упрощение работы с командами:** Шаблон включает Makefile для быстрого доступа к наиболее часто используемым командам 
 разработки Laravel, позволяя выполнять их без предварительного входа в PHP контейнер. Эти алиасы могут быть легко
 адаптированы или расширены в соответствии с особенностями конкретного проекта.
@@ -33,15 +33,27 @@ git clone https://github.com/A-Nikolaefff/laravel-project-boilerplate.git YOUR_P
 ```
 make init
 ```
-* Установите в .env файле переменные для соединения с базой данной. Пример для MySQL:
-```
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=laravel
-DB_PASSWORD=laravel
-```
+* Установите в .env файле переменные для соединения с базой данной. 
+
+    Пример для MySQL:
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=laravel
+    DB_PASSWORD=laravel
+    ```
+  
+    Пример для PostgresSQL:
+    ```
+    DB_CONNECTION=pgsql
+    DB_HOST=pgsql
+    DB_PORT=5432
+    DB_DATABASE=laravel
+    DB_USERNAME=laravel
+    DB_PASSWORD=laravel
+    ```
 * Запустите команду для начала работы контейнеров:
 ```
 make up
@@ -52,7 +64,7 @@ make migrate
 ```
 * Проверьте доступность стандартной страницы Laravel по адресу: http://localhost:8080/
 
-## Make комманды
+## Make команды
 Полный список команд доступен с помощью команды ```make help``` или в самом Makefile в корне проекта. Примеры команд:
 
 * ```make init``` - инициализация нового проекта Laravel
