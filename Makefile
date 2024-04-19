@@ -28,7 +28,7 @@ build: ## Build all containers
 	docker compose build
 
 up: ## Start all containers
-	docker compose up
+	docker compose up -d
 
 down: ## Stop all containers
 	docker compose down
@@ -39,10 +39,10 @@ php: ## Enter PHP container
 #---------------------------------------------------- NPM commands ----------------------------------------------------#
 
 watch: ## Watch assets
-	npm run dev.all
+	npm run dev
 
 prod: ## Build assets
-	npm run build.all
+	npm run build
 
 #--------------------------------------------------- Common commands --------------------------------------------------#
 
