@@ -1,7 +1,7 @@
 FROM php:8.3-fpm
 
 #---------------------------------------------------- Set username and UID/GID ----------------------------------------#
-ENV user=laravel \
+ENV user=user \
     uid=1000
 #----------------------------------------------------------------------------------------------------------------------#
 
@@ -49,7 +49,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-in
 #----------------------------------------------------------------------------------------------------------------------#
 
 #------------------------------------------ Copy php.ini --------------------------------------------------------------#
-COPY _/docker/php/php.ini /usr/local/etc/php/php.ini
+COPY .docker/php/php.ini /usr/local/etc/php/php.ini
 #----------------------------------------------------------------------------------------------------------------------#
 
 #---------------------------------------- Install xdebug --------------------------------------------------------------#
@@ -92,8 +92,8 @@ RUN echo -e "en_US.UTF-8 UTF-8 \\nru_RU.UTF-8 UTF-8" >> /etc/locale.gen && \
 
 #--------------------------------------- Set config supervisor --------------------------------------------------------#
 RUN mkdir -p /etc/supervisor.d/
-COPY _/docker/php/supervisor/supervisord.conf /etc/supervisord.conf
-COPY _/docker/php/supervisor/default.ini /etc/supervisor.d/default.ini
+COPY .docker/php/supervisor/supervisord.conf /etc/supervisord.conf
+COPY .docker/php/supervisor/app.conf /etc/supervisor/app.conf
 #----------------------------------------------------------------------------------------------------------------------#
 
 #----------------------------------------- Set config crontab ---------------------------------------------------------#
@@ -101,7 +101,7 @@ RUN echo "* * * * * $user php /var/www/artisan schedule:run 2>&1" >> /etc/cronta
 #----------------------------------------------------------------------------------------------------------------------#
 
 #--------------------------------------------- Set custom entrypoint --------------------------------------------------#
-COPY _/docker/php/start.sh /usr/bin/start.sh
+COPY .docker/php/start.sh /usr/bin/start.sh
 RUN chmod +x /usr/bin/start.sh
 
 CMD ["sh", "/usr/bin/start.sh"]
